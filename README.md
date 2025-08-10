@@ -1,20 +1,20 @@
-# IAssistant (Light)
-Version légère sans Stripe ni e-mail, idéale pour démarrer et déployer sur Render.
+# IAssistant Enhanced + Favicon
+Homepage enrichie, pages Contact/Pricing/Privacy/Legal, notifications email/Discord optionnelles, favicon via /public/favicon.svg, 404.
 
-## Démarrer en local
+## Variables d'environnement (Render → Settings → Environment)
+- SESSION_SECRET = chaîne aléatoire
+- BASE_URL = https://ton-service.onrender.com (après 1er déploiement)
+- (optionnel) ADMIN_EMAIL, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
+- (optionnel) DISCORD_WEBHOOK_URL
+
+## Déployer
+- Commit/push ces fichiers sur GitHub (ou Upload dans l'UI)
+- Render: Build `npm install`, Start `npm start`
+- Manual Deploy → Clear build cache & deploy si `package.json` a changé
+
+## Local
 ```bash
 npm install
 npm start
-# Ouvrir http://localhost:3000
+# http://localhost:3000
 ```
-
-## Déployer sur Render
-1. Poussez ce dossier sur GitHub (public pour simplifier au début).
-2. Sur https://render.com → **New → Web Service** → Connect GitHub et choisissez ce repo.
-3. **Build Command**: `npm install`
-4. **Start Command**: `npm start`
-5. (Optionnel) Ajoutez `SESSION_SECRET` dans Environment. Après le 1er déploiement, définissez `BASE_URL` avec l’URL Render puis redeploy.
-
-## Notes
-- La base SQLite `ia.db` est créée automatiquement. Sur Render Free, elle peut être réinitialisée lors d’un redeploy.
-- Quand vous voudrez activer les paiements et les e-mails, on branchera Stripe + SMTP et/ou migrera vers Postgres.
