@@ -1,20 +1,16 @@
-# IAssistant Enhanced + Favicon
-Homepage enrichie, pages Contact/Pricing/Privacy/Legal, notifications email/Discord optionnelles, favicon via /public/favicon.svg, 404.
+# IAssistant V5 (minimal)
+- SQLite persistant (via `DB_PATH`, utiliser un Disk Render monté à `/var/data`)
+- Webhook Discord intégré
+- Admin: `mdjaroun0@gmail.com` + mot de passe admin `20082004` (route /admin)
+- Pas de Stripe, pas de SMTP
+- Node 20, Tailwind via CDN
 
-## Variables d'environnement (Render → Settings → Environment)
-- SESSION_SECRET = chaîne aléatoire
-- BASE_URL = https://ton-service.onrender.com (après 1er déploiement)
-- (optionnel) ADMIN_EMAIL, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
-- (optionnel) DISCORD_WEBHOOK_URL
-
-## Déployer
-- Commit/push ces fichiers sur GitHub (ou Upload dans l'UI)
-- Render: Build `npm install`, Start `npm start`
-- Manual Deploy → Clear build cache & deploy si `package.json` a changé
-
-## Local
-```bash
-npm install
-npm start
-# http://localhost:3000
-```
+## Déployer sur Render
+1) Push sur GitHub
+2) Render → New Web Service → connecter le repo
+3) Env vars:
+   - `SESSION_SECRET` (obligatoire)
+   - `BASE_URL` (https de Render)
+   - `DB_PATH = /var/data/ia.db` + **Disks → Add Disk** (mount `/var/data`)
+   - *(optionnel)* `DISCORD_WEBHOOK_URL`
+4) Manual Deploy → Clear build cache & deploy
